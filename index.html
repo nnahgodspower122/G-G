@@ -74,9 +74,9 @@
           rgba(6, 5, 4, 0.85),
           rgba(10, 9, 7, 0.65)
         ),
-        url("g%26g.png");
+        url("g%26g3.png");
       background-size: cover;
-      background-position: center 30%;
+      background-position: center;
       background-attachment: scroll;
     }
 
@@ -442,41 +442,6 @@
 
     .btn-copy.copied {
       background: #6b8f71;
-    }
-
-    .gallery {
-      background: linear-gradient(180deg, var(--bg-raised) 0%, var(--bg-deep) 100%);
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.65rem;
-    }
-
-    @media (min-width: 640px) {
-      .gallery-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 0.85rem;
-      }
-    }
-
-    .gallery-item {
-      border-radius: 8px;
-      overflow: hidden;
-      aspect-ratio: 1;
-      box-shadow: 0 8px 24px var(--shadow);
-    }
-
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-
-    .gallery-item:hover img {
-      transform: scale(1.05);
     }
 
     .rsvp {
@@ -864,24 +829,6 @@
     </div>
   </section>
 
-  <section class="gallery" id="gallery">
-    <div class="section-inner reveal">
-      <h2 class="section-title">Gallery</h2>
-      <p class="section-sub">Moments along the way</p>
-      <div class="gallery-grid">
-        <div class="gallery-item">
-          <img src="g%26g.png" alt="Gloria and Gospel" loading="lazy" width="600" height="600" />
-        </div>
-        <div class="gallery-item">
-          <img src="g%26g2.png" alt="Gloria and Gospel" loading="lazy" width="600" height="600" />
-        </div>
-        <div class="gallery-item">
-          <img src="g%26g3.png" alt="Gloria and Gospel" loading="lazy" width="600" height="600" />
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section class="rsvp" id="rsvp">
     <div class="section-inner reveal">
       <h2 class="section-title">RSVP</h2>
@@ -907,19 +854,19 @@
           <p class="input-hint">For confirmations and replies only.</p>
         </div>
         <div class="form-group">
-          <span class="field-label" id="rsvp-attend-label">Will you attend?</span>
+          <span class="field-label" id="rsvp-attend-label">Will you attend in person?</span>
           <div class="segmented" role="radiogroup" aria-labelledby="rsvp-attend-label">
             <div class="segment">
               <input type="radio" id="attendYes" name="attendance" value="yes" required />
-              <label for="attendYes">Joyfully accepts</label>
+              <label for="attendYes">Yes</label>
             </div>
             <div class="segment">
               <input type="radio" id="attendNo" name="attendance" value="no" />
-              <label for="attendNo">Regretfully declines</label>
+              <label for="attendNo">No</label>
             </div>
             <div class="segment">
               <input type="radio" id="attendMaybe" name="attendance" value="maybe" />
-              <label for="attendMaybe">Maybe, ask me later</label>
+              <label for="attendMaybe">Maybe</label>
             </div>
           </div>
         </div>
@@ -1101,18 +1048,14 @@
         }
 
         var attendLabel =
-          attend.value === "yes"
-            ? "Joyfully accepts"
-            : attend.value === "no"
-              ? "Regretfully declines"
-              : "Maybe, ask me later";
+          attend.value === "yes" ? "Yes" : attend.value === "no" ? "No" : "Maybe";
 
         var body =
           "Name: " +
           name +
           "\nEmail: " +
           email +
-          "\n\nWill you attend? " +
+          "\n\nWill you attend in person? " +
           attendLabel +
           " (value: " +
           attend.value +
