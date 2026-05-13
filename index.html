@@ -249,7 +249,7 @@
     }
 
     .day-colours-figure {
-      max-width: min(520px, 100%);
+      max-width: min(760px, 100%);
       margin: 0 auto;
     }
 
@@ -483,8 +483,7 @@
       font-weight: 500;
     }
 
-    .form-group input[type="text"],
-    .form-group input[type="email"] {
+    .form-group input[type="text"] {
       width: 100%;
       padding: 0.9rem 1.1rem;
       font-family: var(--font-body);
@@ -497,21 +496,18 @@
       transition: border-color 0.2s, box-shadow 0.2s;
     }
 
-    .form-group input[type="text"]::placeholder,
-    .form-group input[type="email"]::placeholder {
+    .form-group input[type="text"]::placeholder {
       color: var(--text-soft);
       opacity: 0.85;
     }
 
-    .form-group input[type="text"]:focus,
-    .form-group input[type="email"]:focus {
+    .form-group input[type="text"]:focus {
       outline: none;
       border-color: var(--gold);
       box-shadow: 0 0 0 3px rgba(201, 169, 98, 0.18);
     }
 
-    .form-group input[type="text"]:-webkit-autofill,
-    .form-group input[type="email"]:-webkit-autofill {
+    .form-group input[type="text"]:-webkit-autofill {
       -webkit-box-shadow: 0 0 0 1000px var(--bg-raised) inset;
       box-shadow: 0 0 0 1000px var(--bg-raised) inset;
       -webkit-text-fill-color: var(--text);
@@ -520,18 +516,10 @@
       border-radius: 10px;
     }
 
-    .form-group input[type="text"]:-webkit-autofill:focus,
-    .form-group input[type="email"]:-webkit-autofill:focus {
+    .form-group input[type="text"]:-webkit-autofill:focus {
       -webkit-box-shadow: 0 0 0 1000px var(--bg-raised) inset, 0 0 0 3px rgba(201, 169, 98, 0.18);
       box-shadow: 0 0 0 1000px var(--bg-raised) inset, 0 0 0 3px rgba(201, 169, 98, 0.18);
       border-color: var(--gold);
-    }
-
-    .rsvp-form .input-hint {
-      margin: 0.45rem 0 0;
-      font-size: 0.8rem;
-      line-height: 1.45;
-      color: var(--text-soft);
     }
 
     .field-label {
@@ -834,24 +822,10 @@
       <h2 class="section-title">RSVP</h2>
       <p class="section-sub">Kindly respond by May 20, 2026</p>
       <form class="rsvp-form" id="rsvpForm" novalidate>
-        <input type="hidden" name="access_key" id="rsvpAccessKey" value="c8ac7f5c-c569-4026-9168-d71972fdd857" />
+        <input type="hidden" name="access_key" id="rsvpAccessKey" value="9d002f16-0224-474a-8b37-0820e62663e5" />
         <div class="form-group">
           <label for="guestName">Your name</label>
           <input type="text" id="guestName" name="name" placeholder="First and last name" autocomplete="name" required />
-        </div>
-        <div class="form-group">
-          <label for="guestEmail">Email</label>
-          <input
-            type="email"
-            id="guestEmail"
-            name="email"
-            placeholder="you@example.com"
-            autocomplete="email"
-            inputmode="email"
-            spellcheck="false"
-            required
-          />
-          <p class="input-hint">For confirmations and replies only.</p>
         </div>
         <div class="form-group">
           <span class="field-label" id="rsvp-attend-label">Will you attend in person?</span>
@@ -1014,8 +988,6 @@
       form.addEventListener("submit", function (e) {
         e.preventDefault();
         var name = document.getElementById("guestName").value.trim();
-        var emailEl = document.getElementById("guestEmail");
-        var email = emailEl ? emailEl.value.trim() : "";
         var attend = form.querySelector('input[name="attendance"]:checked');
         var submitBtn = form.querySelector('button[type="submit"]');
         var keyEl = document.getElementById("rsvpAccessKey");
@@ -1023,14 +995,6 @@
 
         if (!name) {
           note.textContent = "Please enter your name.";
-          return;
-        }
-        if (!email) {
-          note.textContent = "Please enter your email.";
-          return;
-        }
-        if (emailEl && !emailEl.validity.valid) {
-          note.textContent = "Please enter a valid email address.";
           return;
         }
         if (!attend) {
@@ -1053,8 +1017,6 @@
         var body =
           "Name: " +
           name +
-          "\nEmail: " +
-          email +
           "\n\nWill you attend in person? " +
           attendLabel +
           " (value: " +
@@ -1074,7 +1036,6 @@
             subject: "Wedding RSVP — " + name,
             from_name: name,
             name: name,
-            email: email,
             message: body,
           }),
         })
